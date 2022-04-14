@@ -8,7 +8,6 @@ spring:
     password: postgres
   jpa:
     database: postgresql
-    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
@@ -16,3 +15,9 @@ spring:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
+
+logging:
+  level:
+    jdbc.audit: off
+    jdbc.resultset: off
+    jdbc.sqlonly: off
