@@ -27,7 +27,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	
 	public List<ProductName> fetchName();
 	
-	public List<ProductNameBrand> fetchNameBrand();
+	public List<ProductNameBrand> fetchTitle();
 	
 	@Query(nativeQuery = true)
 	public List<ProductWithStocks> withStocks();
