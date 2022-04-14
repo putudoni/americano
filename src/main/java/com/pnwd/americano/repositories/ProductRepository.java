@@ -3,7 +3,6 @@ package com.pnwd.americano.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -23,7 +22,7 @@ import com.pnwd.americano.models.ProductWithStocks;
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
 	@Override
-	@EntityGraph(value = "product-stocks-graph", type = EntityGraphType.FETCH)
+	@EntityGraph(value = "product-stocks-graph")
 	public List<Product> findAll();
 	
 	public List<ProductName> fetchName();
