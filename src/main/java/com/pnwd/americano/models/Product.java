@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,12 +25,8 @@ import lombok.Data;
  */
 @Data
 @Entity
-@NamedEntityGraph(
-		name = "product-stocks-graph", 
-		attributeNodes = { 
-				@NamedAttributeNode("stocks")
-		}
-)
+@NamedEntityGraph(name = "product-stocks-graph", attributeNodes = { @NamedAttributeNode("stocks") })
+@NamedQuery(name = "Product.fetchName", query = "SELECT p.name as name FROM Product p")
 @Table(name = "products")
 public class Product implements Serializable {
 

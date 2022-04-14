@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pnwd.americano.repositories.ProductRepository;
 
+/**
+ * @author Putu Ngurah Wigadoni
+ *
+ */
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -17,6 +21,7 @@ public class ProductController {
 	
 	@GetMapping
 	public ResponseEntity<?> list(){
-		return ResponseEntity.ok(productRepository.findAll());
+		return ResponseEntity.ok(productRepository.withStocks());
 	}
+	
 }
