@@ -15,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -46,6 +48,11 @@ public class Product implements Serializable {
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "product")
 	private List<Stock> stocks = new ArrayList<>();
+	
+	@Where(clause = "quantity < 5")
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "product")
+	private List<Stock> stocksLessThanFive = new ArrayList<>();
 
 	public void addStock(Stock stock) {
 		this.stocks.add(stock);

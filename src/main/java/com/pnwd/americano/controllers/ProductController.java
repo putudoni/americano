@@ -21,7 +21,7 @@ public class ProductController {
 	
 	@GetMapping
 	public ResponseEntity<?> list(){
-		return ResponseEntity.ok(productRepository.fetchTitle());
+		return ResponseEntity.ok(productRepository.findById(1L).get().getStocksLessThanFive());
 	}
 	
 }
