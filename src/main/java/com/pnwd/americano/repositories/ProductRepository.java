@@ -36,4 +36,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	@Query(nativeQuery = true)
 	public List<ProductWithStocks> withStocks();
 	
+	public <T> T findByName(String name, Class<T> type);
+	
 }
