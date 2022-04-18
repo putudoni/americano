@@ -13,13 +13,17 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author Putu Ngurah Wigadoni
  *
  */
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "stocks")
 public class Stock implements Serializable{

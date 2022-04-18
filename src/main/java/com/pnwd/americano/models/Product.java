@@ -1,8 +1,8 @@
 package com.pnwd.americano.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,15 +19,19 @@ import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author Putu Ngurah Wigadoni
  *
  */
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
-@NamedEntityGraph(name = "product-stocks-graph", attributeNodes = { @NamedAttributeNode("stocks") })
+@NamedEntityGraph(name = "product-stocks-graph", attributeNodes = { @NamedAttributeNode("stocks"), @NamedAttributeNode("stocksLessThanFive") })
 @NamedQuery(name = "Product.fetchName", query = "SELECT p.name as name FROM Product p")
 @Table(name = "products")
 public class Product implements Serializable {
@@ -47,12 +51,12 @@ public class Product implements Serializable {
 
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "product")
-	private List<Stock> stocks = new ArrayList<>();
-	
-	@Where(clause = "quantity < 5")
+	private Set<Stock> stocks = new HashSet<>();
+
 	@JsonManagedReference
+	@Where(clause = "quantity < 5")
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "product")
-	private List<Stock> stocksLessThanFive = new ArrayList<>();
+	private Set<Stock> stocksLessThanFive = new HashSet<>();
 
 	public void addStock(Stock stock) {
 		this.stocks.add(stock);
