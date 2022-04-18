@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pnwd.americano.repositories.ProductRepository;
+import com.pnwd.americano.services.ProductService;
 
 /**
  * @author Putu Ngurah Wigadoni
@@ -18,11 +17,11 @@ import com.pnwd.americano.repositories.ProductRepository;
 public class ProductController {
 
 	@Autowired
-	private ProductRepository productRepository;
+	private ProductService productService;
 	
 	@GetMapping
-	public ResponseEntity<?> list(@RequestParam("name") String name){
-		return ResponseEntity.ok(productRepository.findByNameContaining(name));
+	public ResponseEntity<?> list(){
+		return ResponseEntity.ok(productService.findAll());
 	}
 	
 }
