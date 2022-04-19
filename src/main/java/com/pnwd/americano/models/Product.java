@@ -16,8 +16,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pnwd.americano.events.ProductReviewEvent;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +36,7 @@ import lombok.Setter;
 @NamedEntityGraph(name = "product-stocks-graph", attributeNodes = { @NamedAttributeNode("stocks"), @NamedAttributeNode("stocksLessThanFive") })
 @NamedQuery(name = "Product.fetchName", query = "SELECT p.name as name FROM Product p")
 @Table(name = "products")
-public class Product implements Serializable {
+public class Product extends AbstractAggregateRoot<Product> implements Serializable {
 
 	/**
 	 * 
@@ -42,7 +44,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	private String name;
@@ -66,6 +68,15 @@ public class Product implements Serializable {
 	public void removeStock(Stock stock) {
 		stock.setProduct(null);
 		this.stocks.remove(stock);
+	}
+	
+	public void reviewEvent() {
+		registerEvent(new ProductReviewEvent(this));
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Product [id=%s, name=%s, brand=%s]", id, name, brand);
 	}
 
 }
