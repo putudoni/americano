@@ -20,4 +20,10 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 	
+	@Transactional
+	public void save(Product product) {
+		product.reviewEvent();
+		productRepository.save(product);
+	}
+	
 }
