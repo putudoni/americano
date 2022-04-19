@@ -16,13 +16,16 @@ import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.Where;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pnwd.americano.events.ProductReviewEvent;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -56,6 +59,11 @@ public class Product extends AbstractAggregateRoot<Product> implements Serializa
 	@Column(precision = 10, scale = 2)
 	private BigDecimal price;
 
+	@Setter(value = AccessLevel.PRIVATE)
+	@Formula("price - (price * 0.1)")
+	@Column(precision = 10, scale = 2)
+	private BigDecimal discount;
+
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "product")
 	private Set<Stock> stocks = new HashSet<>();
@@ -77,6 +85,11 @@ public class Product extends AbstractAggregateRoot<Product> implements Serializa
 	
 	public void reviewEvent() {
 		registerEvent(new ProductReviewEvent(this));
+	}
+	
+	@Transient
+	public BigDecimal getDiscount() {
+		return discount;
 	}
 	
 	@Override
