@@ -1,4 +1,4 @@
-package com.pnwd.americano.repositories;
+package com.pnwd.americano.repository;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pnwd.americano.models.Product;
-import com.pnwd.americano.models.ProductName;
-import com.pnwd.americano.models.ProductNameBrand;
-import com.pnwd.americano.models.ProductWithStocks;
+import com.pnwd.americano.model.Product;
+import com.pnwd.americano.model.ProductName;
+import com.pnwd.americano.model.ProductNameBrand;
+import com.pnwd.americano.model.ProductWithStocks;
 
 /**
  * @author Putu Ngurah Wigadoni

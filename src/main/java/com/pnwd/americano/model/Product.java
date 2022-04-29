@@ -1,4 +1,4 @@
-package com.pnwd.americano.models;
+package com.pnwd.americano.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,8 @@ import org.hibernate.annotations.Where;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.pnwd.americano.events.ProductReviewEvent;
+import com.pnwd.americano.event.ProductEntityListener;
+import com.pnwd.americano.event.ProductReviewEvent;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -38,6 +40,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Entity
+@EntityListeners(value = {ProductEntityListener.class})
 @NamedEntityGraph(name = "product-stocks-graph", attributeNodes = { @NamedAttributeNode("stocks"), @NamedAttributeNode("stocksLessThanFive") })
 @NamedQuery(name = "Product.fetchName", query = "SELECT p.name as name FROM Product p")
 @Table(name = "products")

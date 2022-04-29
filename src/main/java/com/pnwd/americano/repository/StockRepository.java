@@ -1,4 +1,4 @@
-package com.pnwd.americano.repositories;
+package com.pnwd.americano.repository;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.pnwd.americano.models.Stock;
-import com.pnwd.americano.models.StockAllFields;
+import com.pnwd.americano.model.Stock;
+import com.pnwd.americano.model.StockAllFields;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {

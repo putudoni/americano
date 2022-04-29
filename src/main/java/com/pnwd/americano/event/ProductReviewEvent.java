@@ -1,6 +1,6 @@
-package com.pnwd.americano.events;
+package com.pnwd.americano.event;
 
-import com.pnwd.americano.models.Product;
+import com.pnwd.americano.model.Product;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.pnwd.americano.models;
+package com.pnwd.americano.model;
 
 import org.springframework.beans.factory.annotation.Value;
 

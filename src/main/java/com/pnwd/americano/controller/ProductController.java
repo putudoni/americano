@@ -1,4 +1,4 @@
-package com.pnwd.americano.controllers;
+package com.pnwd.americano.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pnwd.americano.models.Product;
-import com.pnwd.americano.services.ProductService;
+import com.pnwd.americano.model.Product;
+import com.pnwd.americano.service.ProductService;
 
 /**
  * @author Putu Ngurah Wigadoni

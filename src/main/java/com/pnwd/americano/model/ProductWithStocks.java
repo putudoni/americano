@@ -1,4 +1,4 @@
-package com.pnwd.americano.models;
+package com.pnwd.americano.model;
 
 /**
  * @author Putu Ngurah Wigadoni

@@ -1,4 +1,4 @@
-package com.pnwd.americano.events;
+package com.pnwd.americano.event;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.event.TransactionalEventListener;
